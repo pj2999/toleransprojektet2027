@@ -16,6 +16,7 @@
       --sales: light-dark(#f28b66, #d97858);
       --event: light-dark(#789775, #91ad8d);
       --meeting: light-dark(#77a6c9, #82aac7);
+      --disco: light-dark(#b66aa6, #cf86bd);
       --travel: light-dark(#d8892f, #efb35f);
     }
     * { box-sizing: border-box; }
@@ -182,7 +183,7 @@
   <main>
     <header>
       <div><h1>Toleransprojektet 2026-2027 Årshjul</h1><p>Aktiviteter i projektet - klicka för detaljer</p></div>
-      <div class="badge">8 saker på gång · sep-maj</div>
+      <div class="badge">9 saker på gång · sep-maj</div>
     </header>
     <div class="scroller" aria-label="Gantt-schema">
       <section class="gantt">
@@ -191,6 +192,7 @@
         </div>
         <div class="row"><button type="button" class="task range" style="--day:20;--days:43;--color:var(--sales)" aria-expanded="false" aria-label="Försäljning Klubbrabatten, 21 september till 2 november"><span class="info"><strong>Försäljning Klubbrabatten</strong><span>21 sep - 2 nov · Försäljning</span><p>Försäljning av Klubbrabatten.</p></span></button></div>
         <div class="row"><button type="button" class="task range" style="--day:20;--days:14;--color:var(--sales)" aria-expanded="false" aria-label="Försäljning Pepparkakor, 21 september till 4 oktober"><span class="info"><strong>Försäljning Pepparkakor</strong><span>21 sep - 4 okt · Försäljning</span><p>Försäljning av pepparkakor i plåtburk.</p></span></button></div>
+        <div class="row"><button type="button" class="task milestone" style="--day:45;--color:var(--disco)" aria-expanded="false" aria-label="Halloween disco, 16 oktober"><span class="info"><strong>Halloween disco</strong><span>16 okt · Disco</span><p>Disco på Morkarlbyhöjden med Halloween-tema.</p></span></button></div>
         <div class="row"><button type="button" class="task milestone" style="--day:46;--color:var(--event)" aria-expanded="false" aria-label="Toleransjoggen, 17 oktober"><span class="info"><strong>Toleransjoggen</strong><span>17 okt · Arrangemang</span><p>Springlopp i Hemus för att samla in pengar till projektet.</p></span></button></div>
         <div class="row"><button type="button" class="task milestone" style="--day:72;--color:var(--meeting)" aria-expanded="false" aria-label="Informationsmöte Toleransprojektet, 12 november"><span class="info"><strong>Informationsmöte Toleransprojektet</strong><span>12 nov · Möte</span><p>Informationsmöte med status om Toleransprojektet i Mora Gymnasiums Aula.</p></span></button></div>
         <div class="row"><button type="button" class="task milestone" style="--day:90;--color:var(--event)" aria-expanded="false" aria-label="Fikaförsäljning Julshow, 30 november"><span class="info"><strong>Fikaförsäljning Julshow</strong><span>30 nov · Arrangemang</span><p>Fikaförsäljning på Kulturskolan Mirandas Julshow.</p></span></button></div>
@@ -198,7 +200,7 @@
         <div class="row"><button type="button" class="task milestone tip-up" style="--day:148;--color:var(--event)" aria-expanded="false" aria-label="Föreläsning Förintelsens Dag, 27 januari 2027"><span class="info"><strong>Föreläsning Förintelsens Dag</strong><span>27 jan 2027 · Arrangemang</span><p>Föreläsning i samband med Förintelsens minnesdag.</p></span></button></div>
         <div class="row"><button type="button" class="task range goal to-left tip-up" style="--day:264;--days:5;--color:var(--travel)" aria-expanded="false" aria-label="Resa till Polen, 23 till 27 maj 2027, projektets slutmål"><span class="info"><strong>Resa till Polen · Slutmål</strong><span>23-27 maj 2027 · Resa</span><p>Avslutande resan till Krakow i Polen.</p></span></button></div>
         <div class="legend" aria-label="Förklaring">
-          <span class="dot" style="--swatch:var(--sales)">Försäljning</span><span class="dot" style="--swatch:var(--event)">Arrangemang</span><span class="dot" style="--swatch:var(--meeting)">Möte</span><span class="dot" style="--swatch:var(--travel)">Resa · slutmål</span>
+          <span class="dot" style="--swatch:var(--sales)">Försäljning</span><span class="dot" style="--swatch:var(--event)">Arrangemang</span><span class="dot" style="--swatch:var(--meeting)">Möte</span><span class="dot" style="--swatch:var(--disco)">Disco</span><span class="dot" style="--swatch:var(--travel)">Resa · slutmål</span>
         </div>
       </section>
     </div>
@@ -215,6 +217,9 @@
             </tr>
             <tr>
               <td>Försäljning Pepparkakor</td><td class="date">21 sep - 4 okt 2026</td><td><span class="category" style="--tag:var(--sales)">Försäljning</span></td><td>Försäljning av pepparkakor i plåtburk.</td>
+            </tr>
+            <tr>
+              <td>Halloween disco</td><td class="date">16 okt 2026</td><td><span class="category" style="--tag:var(--disco)">Disco</span></td><td>Disco på Morkarlbyhöjden med Halloween-tema.</td>
             </tr>
             <tr>
               <td>Toleransjoggen</td><td class="date">17 okt 2026</td><td><span class="category" style="--tag:var(--event)">Arrangemang</span></td><td>Springlopp i Hemus för att samla in pengar till projektet.</td>
@@ -260,7 +265,7 @@
       document.addEventListener("keydown", event => {
         if (event.key === "Escape") tasks.forEach(closeTask);
       });
-      console.assert(tasks.length === 8, "Åtta aktiviteter ska vara klickbara");
+      console.assert(tasks.length === 9, "Nio aktiviteter ska vara klickbara");
     </script>
   </main>
 </body>
