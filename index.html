@@ -115,7 +115,7 @@
       box-shadow: 2px 2px 0 rgb(86 61 47 / 15%);
       transform: rotate(45deg);
     }
-    .task:hover, .task:focus-visible { z-index: 10; outline: 3px solid var(--color); outline-offset: 4px; }
+    .task.is-open, .task:focus-visible { z-index: 10; outline: 3px solid var(--color); outline-offset: 4px; }
     .info {
       display: none;
       position: absolute;
@@ -137,7 +137,7 @@
     .milestone.to-left .info { left: auto; right: 24px; }
     .tip-up .info { top: auto; bottom: 27px; }
     .milestone.tip-up .info { top: auto; bottom: -12px; }
-    .task:hover .info, .task:focus-visible .info { display: block; }
+    .task.is-open .info { display: block; }
     .info strong { display: block; margin-bottom: 4px; font-size: 15px; font-weight: 650; }
     .info span { display: block; margin-bottom: 7px; color: var(--color); font-weight: 650; }
     .info p { margin: 0; color: var(--muted); }
@@ -181,7 +181,7 @@
 <body>
   <main>
     <header>
-      <div><h1>Toleransprojektet 2026-2027 Årshjul</h1><p>Aktiviteter i projektet - hovra för detaljer</p></div>
+      <div><h1>Toleransprojektet 2026-2027 Årshjul</h1><p>Aktiviteter i projektet - klicka för detaljer</p></div>
       <div class="badge">8 saker på gång · sep-maj</div>
     </header>
     <div class="scroller" aria-label="Gantt-schema">
@@ -189,14 +189,14 @@
         <div class="months" aria-hidden="true">
           <div>September<span>2026</span></div><div>Oktober<span>2026</span></div><div>November<span>2026</span></div><div>December<span>2026</span></div><div>Januari<span>2027</span></div><div>Februari<span>2027</span></div><div>Mars<span>2027</span></div><div>April<span>2027</span></div><div>Maj<span>2027</span></div>
         </div>
-        <div class="row"><button class="task range" style="--day:20;--days:43;--color:var(--sales)" aria-label="Försäljning Klubbrabatten, 21 september till 2 november"><span class="info"><strong>Försäljning Klubbrabatten</strong><span>21 sep - 2 nov · Försäljning</span><p>Försäljning av Klubbrabatten.</p></span></button></div>
-        <div class="row"><button class="task range" style="--day:20;--days:14;--color:var(--sales)" aria-label="Försäljning Pepparkakor, 21 september till 4 oktober"><span class="info"><strong>Försäljning Pepparkakor</strong><span>21 sep - 4 okt · Försäljning</span><p>Försäljning av pepparkakor i plåtburk.</p></span></button></div>
-        <div class="row"><button class="task milestone" style="--day:46;--color:var(--event)" aria-label="Toleransjoggen, 17 oktober"><span class="info"><strong>Toleransjoggen</strong><span>17 okt · Arrangemang</span><p>Springlopp i Hemus för att samla in pengar till projektet.</p></span></button></div>
-        <div class="row"><button class="task milestone" style="--day:72;--color:var(--meeting)" aria-label="Informationsmöte Toleransprojektet, 12 november"><span class="info"><strong>Informationsmöte Toleransprojektet</strong><span>12 nov · Möte</span><p>Informationsmöte med status om Toleransprojektet i Mora Gymnasiums Aula.</p></span></button></div>
-        <div class="row"><button class="task milestone" style="--day:90;--color:var(--event)" aria-label="Fikaförsäljning Julshow, 30 november"><span class="info"><strong>Fikaförsäljning Julshow</strong><span>30 nov · Arrangemang</span><p>Fikaförsäljning på Kulturskolan Mirandas Julshow.</p></span></button></div>
-        <div class="row"><button class="task milestone tip-up" style="--day:91;--color:var(--event)" aria-label="Fikaförsäljning Julshow, 1 december"><span class="info"><strong>Fikaförsäljning Julshow</strong><span>1 dec · Arrangemang</span><p>Fikaförsäljning på Kulturskolan Mirandas Julshow.</p></span></button></div>
-        <div class="row"><button class="task milestone tip-up" style="--day:148;--color:var(--event)" aria-label="Föreläsning Förintelsens Dag, 27 januari 2027"><span class="info"><strong>Föreläsning Förintelsens Dag</strong><span>27 jan 2027 · Arrangemang</span><p>Föreläsning i samband med Förintelsens minnesdag.</p></span></button></div>
-        <div class="row"><button class="task range goal to-left tip-up" style="--day:264;--days:5;--color:var(--travel)" aria-label="Resa till Polen, 23 till 27 maj 2027, projektets slutmål"><span class="info"><strong>Resa till Polen · Slutmål</strong><span>23-27 maj 2027 · Resa</span><p>Avslutande resan till Krakow i Polen.</p></span></button></div>
+        <div class="row"><button type="button" class="task range" style="--day:20;--days:43;--color:var(--sales)" aria-expanded="false" aria-label="Försäljning Klubbrabatten, 21 september till 2 november"><span class="info"><strong>Försäljning Klubbrabatten</strong><span>21 sep - 2 nov · Försäljning</span><p>Försäljning av Klubbrabatten.</p></span></button></div>
+        <div class="row"><button type="button" class="task range" style="--day:20;--days:14;--color:var(--sales)" aria-expanded="false" aria-label="Försäljning Pepparkakor, 21 september till 4 oktober"><span class="info"><strong>Försäljning Pepparkakor</strong><span>21 sep - 4 okt · Försäljning</span><p>Försäljning av pepparkakor i plåtburk.</p></span></button></div>
+        <div class="row"><button type="button" class="task milestone" style="--day:46;--color:var(--event)" aria-expanded="false" aria-label="Toleransjoggen, 17 oktober"><span class="info"><strong>Toleransjoggen</strong><span>17 okt · Arrangemang</span><p>Springlopp i Hemus för att samla in pengar till projektet.</p></span></button></div>
+        <div class="row"><button type="button" class="task milestone" style="--day:72;--color:var(--meeting)" aria-expanded="false" aria-label="Informationsmöte Toleransprojektet, 12 november"><span class="info"><strong>Informationsmöte Toleransprojektet</strong><span>12 nov · Möte</span><p>Informationsmöte med status om Toleransprojektet i Mora Gymnasiums Aula.</p></span></button></div>
+        <div class="row"><button type="button" class="task milestone" style="--day:90;--color:var(--event)" aria-expanded="false" aria-label="Fikaförsäljning Julshow, 30 november"><span class="info"><strong>Fikaförsäljning Julshow</strong><span>30 nov · Arrangemang</span><p>Fikaförsäljning på Kulturskolan Mirandas Julshow.</p></span></button></div>
+        <div class="row"><button type="button" class="task milestone tip-up" style="--day:91;--color:var(--event)" aria-expanded="false" aria-label="Fikaförsäljning Julshow, 1 december"><span class="info"><strong>Fikaförsäljning Julshow</strong><span>1 dec · Arrangemang</span><p>Fikaförsäljning på Kulturskolan Mirandas Julshow.</p></span></button></div>
+        <div class="row"><button type="button" class="task milestone tip-up" style="--day:148;--color:var(--event)" aria-expanded="false" aria-label="Föreläsning Förintelsens Dag, 27 januari 2027"><span class="info"><strong>Föreläsning Förintelsens Dag</strong><span>27 jan 2027 · Arrangemang</span><p>Föreläsning i samband med Förintelsens minnesdag.</p></span></button></div>
+        <div class="row"><button type="button" class="task range goal to-left tip-up" style="--day:264;--days:5;--color:var(--travel)" aria-expanded="false" aria-label="Resa till Polen, 23 till 27 maj 2027, projektets slutmål"><span class="info"><strong>Resa till Polen · Slutmål</strong><span>23-27 maj 2027 · Resa</span><p>Avslutande resan till Krakow i Polen.</p></span></button></div>
         <div class="legend" aria-label="Förklaring">
           <span class="dot" style="--swatch:var(--sales)">Försäljning</span><span class="dot" style="--swatch:var(--event)">Arrangemang</span><span class="dot" style="--swatch:var(--meeting)">Möte</span><span class="dot" style="--swatch:var(--travel)">Resa · slutmål</span>
         </div>
@@ -238,6 +238,30 @@
         </table>
       </div>
     </section>
+    <script>
+      const tasks = [...document.querySelectorAll(".task")];
+      const closeTask = task => {
+        task.classList.remove("is-open");
+        task.setAttribute("aria-expanded", "false");
+      };
+
+      tasks.forEach(task => task.addEventListener("click", () => {
+        const shouldOpen = !task.classList.contains("is-open");
+        tasks.forEach(closeTask);
+        if (shouldOpen) {
+          task.classList.add("is-open");
+          task.setAttribute("aria-expanded", "true");
+        }
+      }));
+
+      document.addEventListener("click", event => {
+        if (!event.target.closest(".task")) tasks.forEach(closeTask);
+      });
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape") tasks.forEach(closeTask);
+      });
+      console.assert(tasks.length === 8, "Åtta aktiviteter ska vara klickbara");
+    </script>
   </main>
 </body>
 </html>
