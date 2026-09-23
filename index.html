@@ -144,10 +144,37 @@
     .legend { display: flex; flex-wrap: wrap; gap: 14px 26px; align-items: center; padding-top: 22px; color: var(--muted); font-size: 14px; }
     .legend .dot::before { content: ""; display: inline-block; margin-right: 8px; background: var(--swatch); vertical-align: middle; }
     .legend .dot::before { width: 11px; height: 11px; border-radius: 50%; }
+    .activity-table { padding: 8px 38px 36px; }
+    .activity-table h2 { margin: 0 0 14px; font-size: 22px; font-weight: 650; letter-spacing: -.02em; }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--grid); border-radius: 18px; }
+    table { width: 100%; min-width: 880px; border-collapse: collapse; background: var(--surface); }
+    th, td { padding: 14px 16px; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
+    th { background: light-dark(#fff1d9, #44352d); color: var(--muted); font-size: 12px; font-weight: 650; letter-spacing: .04em; text-transform: uppercase; }
+    td { font: 400 14px/1.4 system-ui, sans-serif; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover { background: light-dark(#fff8ec, #392f2a); }
+    td:first-child { font-weight: 650; }
+    .date { white-space: nowrap; }
+    .category {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--tag) 18%, transparent);
+      color: var(--ink);
+      white-space: nowrap;
+      font-size: 12px;
+      font-weight: 650;
+    }
+    .category::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--tag); }
+    .goal-row { background: color-mix(in srgb, var(--travel) 10%, transparent); }
+    .goal-row td:first-child::before { content: "★"; margin-right: 7px; color: var(--travel); }
     @media (max-width: 650px) {
       main { margin: 0; border-radius: 0; }
       header { align-items: flex-start; flex-direction: column; padding: 24px; }
       .gantt { padding-inline: 24px; }
+      .activity-table { padding-inline: 24px; }
     }
   </style>
 </head>
@@ -175,6 +202,42 @@
         </div>
       </section>
     </div>
+    <section class="activity-table" aria-labelledby="activity-table-title">
+      <h2 id="activity-table-title">Alla aktiviteter</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">Aktivitet</th><th scope="col">Datum</th><th scope="col">Kategori</th><th scope="col">Beskrivning</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Försäljning Klubbrabatten</td><td class="date">21 sep - 2 nov 2026</td><td><span class="category" style="--tag:var(--sales)">Försäljning</span></td><td>Försäljning av Klubbrabatten.</td>
+            </tr>
+            <tr>
+              <td>Försäljning Pepparkakor</td><td class="date">21 sep - 4 okt 2026</td><td><span class="category" style="--tag:var(--sales)">Försäljning</span></td><td>Försäljning av pepparkakor i plåtburk.</td>
+            </tr>
+            <tr>
+              <td>Toleransjoggen</td><td class="date">17 okt 2026</td><td><span class="category" style="--tag:var(--event)">Arrangemang</span></td><td>Springlopp i Hemus för att samla in pengar till projektet.</td>
+            </tr>
+            <tr>
+              <td>Informationsmöte Toleransprojektet</td><td class="date">12 nov 2026</td><td><span class="category" style="--tag:var(--meeting)">Möte</span></td><td>Informationsmöte med status om Toleransprojektet i Mora Gymnasiums Aula.</td>
+            </tr>
+            <tr>
+              <td>Fikaförsäljning Julshow</td><td class="date">30 nov 2026</td><td><span class="category" style="--tag:var(--event)">Arrangemang</span></td><td>Fikaförsäljning på Kulturskolan Mirandas Julshow.</td>
+            </tr>
+            <tr>
+              <td>Fikaförsäljning Julshow</td><td class="date">1 dec 2026</td><td><span class="category" style="--tag:var(--event)">Arrangemang</span></td><td>Fikaförsäljning på Kulturskolan Mirandas Julshow.</td>
+            </tr>
+            <tr>
+              <td>Föreläsning Förintelsens Dag</td><td class="date">27 jan 2027</td><td><span class="category" style="--tag:var(--event)">Arrangemang</span></td><td>Föreläsning i samband med Förintelsens minnesdag.</td>
+            </tr>
+            <tr class="goal-row">
+              <td>Resa till Polen</td><td class="date">23-27 maj 2027</td><td><span class="category" style="--tag:var(--travel)">Resa · slutmål</span></td><td>Avslutande resan till Krakow i Polen.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </main>
 </body>
 </html>
