@@ -48,8 +48,8 @@
     header p { margin: 0; color: var(--muted); }
     .badge { padding: 9px 16px; border-radius: 999px; background: light-dark(#f7bd5b, #7d5a35); white-space: nowrap; transform: rotate(2deg); }
     .scroller { overflow-x: auto; }
-    .gantt { min-width: 1100px; padding: 28px 38px 34px; }
-    .months { display: grid; grid-template-columns: 30fr 31fr 30fr 31fr 31fr 28fr 31fr 30fr 31fr; border-bottom: 2px solid var(--grid); }
+    .gantt { min-width: 1200px; padding: 28px 38px 34px; }
+    .months { display: grid; grid-template-columns: 30fr 31fr 30fr 31fr 31fr 28fr 31fr 30fr 31fr 30fr; border-bottom: 2px solid var(--grid); }
     .months div { padding: 11px 4px; border-left: 1px solid var(--grid); text-align: center; font-size: 13px; font-weight: 650; }
     .months div:last-child { border-right: 1px solid var(--grid); }
     .months span { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; font-weight: 400; }
@@ -58,19 +58,20 @@
       height: 58px;
       border-bottom: 1px solid var(--grid);
       background: linear-gradient(to right,
-        transparent 0 10.99%, var(--grid) 10.99% calc(10.99% + 1px),
-        transparent calc(10.99% + 1px) 22.34%, var(--grid) 22.34% calc(22.34% + 1px),
-        transparent calc(22.34% + 1px) 33.33%, var(--grid) 33.33% calc(33.33% + 1px),
-        transparent calc(33.33% + 1px) 44.69%, var(--grid) 44.69% calc(44.69% + 1px),
-        transparent calc(44.69% + 1px) 56.04%, var(--grid) 56.04% calc(56.04% + 1px),
-        transparent calc(56.04% + 1px) 66.30%, var(--grid) 66.30% calc(66.30% + 1px),
-        transparent calc(66.30% + 1px) 77.66%, var(--grid) 77.66% calc(77.66% + 1px),
-        transparent calc(77.66% + 1px) 88.64%, var(--grid) 88.64% calc(88.64% + 1px),
-        transparent calc(88.64% + 1px));
+        transparent 0 9.90%, var(--grid) 9.90% calc(9.90% + 1px),
+        transparent calc(9.90% + 1px) 20.13%, var(--grid) 20.13% calc(20.13% + 1px),
+        transparent calc(20.13% + 1px) 30.03%, var(--grid) 30.03% calc(30.03% + 1px),
+        transparent calc(30.03% + 1px) 40.26%, var(--grid) 40.26% calc(40.26% + 1px),
+        transparent calc(40.26% + 1px) 50.50%, var(--grid) 50.50% calc(50.50% + 1px),
+        transparent calc(50.50% + 1px) 59.74%, var(--grid) 59.74% calc(59.74% + 1px),
+        transparent calc(59.74% + 1px) 69.97%, var(--grid) 69.97% calc(69.97% + 1px),
+        transparent calc(69.97% + 1px) 79.87%, var(--grid) 79.87% calc(79.87% + 1px),
+        transparent calc(79.87% + 1px) 90.10%, var(--grid) 90.10% calc(90.10% + 1px),
+        transparent calc(90.10% + 1px));
     }
     .row:nth-child(even) { background-color: rgb(120 92 70 / 3%); }
     .task {
-      --x: calc(var(--day) * 100% / 273);
+      --x: calc(var(--day) * 100% / 303);
       position: absolute;
       z-index: 1;
       left: var(--x);
@@ -82,7 +83,7 @@
       cursor: help;
     }
     .range {
-      width: calc(var(--days) * 100% / 273);
+      width: calc(var(--days) * 100% / 303);
       min-width: 16px;
       border-radius: 999px;
       background: var(--color);
@@ -184,12 +185,12 @@
   <main>
     <header>
       <div><h1>Toleransprojektet 2026-2027 Årshjul</h1><p>Aktiviteter i projektet - klicka för detaljer</p></div>
-      <div class="badge">14 saker på gång · sep-maj</div>
+      <div class="badge">14 saker på gång · sep-jun</div>
     </header>
     <div class="scroller" aria-label="Gantt-schema">
       <section class="gantt">
         <div class="months" aria-hidden="true">
-          <div>September<span>2026</span></div><div>Oktober<span>2026</span></div><div>November<span>2026</span></div><div>December<span>2026</span></div><div>Januari<span>2027</span></div><div>Februari<span>2027</span></div><div>Mars<span>2027</span></div><div>April<span>2027</span></div><div>Maj<span>2027</span></div>
+          <div>September<span>2026</span></div><div>Oktober<span>2026</span></div><div>November<span>2026</span></div><div>December<span>2026</span></div><div>Januari<span>2027</span></div><div>Februari<span>2027</span></div><div>Mars<span>2027</span></div><div>April<span>2027</span></div><div>Maj<span>2027</span></div><div>Juni<span>2027</span></div>
         </div>
         <div class="row"><button type="button" class="task range" style="--day:20;--days:43;--color:var(--sales)" aria-expanded="false" aria-label="Försäljning Klubbrabatten, 21 september till 2 november"><span class="info"><strong>Försäljning Klubbrabatten</strong><span>21 sep - 2 nov · Försäljning</span><p>Försäljning av Klubbrabatten.</p></span></button></div>
         <div class="row"><button type="button" class="task range" style="--day:20;--days:14;--color:var(--sales)" aria-expanded="false" aria-label="Försäljning Pepparkakor, 21 september till 4 oktober"><span class="info"><strong>Försäljning Pepparkakor</strong><span>21 sep - 4 okt · Försäljning</span><p>Försäljning av pepparkakor i plåtburk.</p></span></button></div>
@@ -204,7 +205,7 @@
         <div class="row"><button type="button" class="task milestone" style="--day:90;--color:var(--event)" aria-expanded="false" aria-label="Fikaförsäljning Julshow, 30 november"><span class="info"><strong>Fikaförsäljning Julshow</strong><span>30 nov · Arrangemang</span><p>Fikaförsäljning på Kulturskolan Mirandas Julshow.</p></span></button></div>
         <div class="row"><button type="button" class="task milestone tip-up" style="--day:91;--color:var(--event)" aria-expanded="false" aria-label="Fikaförsäljning Julshow, 1 december"><span class="info"><strong>Fikaförsäljning Julshow</strong><span>1 dec · Arrangemang</span><p>Fikaförsäljning på Kulturskolan Mirandas Julshow.</p></span></button></div>
         <div class="row"><button type="button" class="task milestone tip-up" style="--day:148;--color:var(--event)" aria-expanded="false" aria-label="Föreläsning Förintelsens Dag, 27 januari 2027"><span class="info"><strong>Föreläsning Förintelsens Dag</strong><span>27 jan 2027 · Arrangemang</span><p>Föreläsning i samband med Förintelsens minnesdag.</p></span></button></div>
-        <div class="row"><button type="button" class="task range goal to-left tip-up" style="--day:264;--days:5;--color:var(--travel)" aria-expanded="false" aria-label="Resa till Polen, 23 till 27 maj 2027, projektets slutmål"><span class="info"><strong>Resa till Polen · Slutmål</strong><span>23-27 maj 2027 · Resa</span><p>Avslutande resan till Krakow i Polen.</p></span></button></div>
+        <div class="row"><button type="button" class="task range goal to-left tip-up" style="--day:274;--days:6;--color:var(--travel)" aria-expanded="false" aria-label="Resa till Polen, 2 till 7 juni 2027, projektets slutmål"><span class="info"><strong>Resa till Polen · Slutmål</strong><span>2-7 jun 2027 · Resa</span><p>Avslutande resan till Krakow i Polen.</p></span></button></div>
         <div class="legend" aria-label="Förklaring">
           <span class="dot" style="--swatch:var(--sales)">Försäljning</span><span class="dot" style="--swatch:var(--event)">Arrangemang</span><span class="dot" style="--swatch:var(--meeting)">Möte</span><span class="dot" style="--swatch:var(--disco)">Disco</span><span class="dot" style="--swatch:var(--important)">Viktiga datum</span><span class="dot" style="--swatch:var(--travel)">Resa · slutmål</span>
         </div>
@@ -258,7 +259,7 @@
               <td>Föreläsning Förintelsens Dag</td><td class="date">27 jan 2027</td><td><span class="category" style="--tag:var(--event)">Arrangemang</span></td><td>Föreläsning i samband med Förintelsens minnesdag.</td>
             </tr>
             <tr class="goal-row">
-              <td>Resa till Polen</td><td class="date">23-27 maj 2027</td><td><span class="category" style="--tag:var(--travel)">Resa · slutmål</span></td><td>Avslutande resan till Krakow i Polen.</td>
+              <td>Resa till Polen</td><td class="date">2-7 jun 2027</td><td><span class="category" style="--tag:var(--travel)">Resa · slutmål</span></td><td>Avslutande resan till Krakow i Polen.</td>
             </tr>
           </tbody>
         </table>
