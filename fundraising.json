@@ -1,0 +1,25 @@
+{
+  "goal": 0,
+  "categories": [
+    {
+      "name": "Försäljning",
+      "amount": 0
+    },
+    {
+      "name": "Disco",
+      "amount": 0
+    },
+    {
+      "name": "Sponsring",
+      "amount": 0
+    },
+    {
+      "name": "Anmälningsavgifter",
+      "amount": 0
+    },
+    {
+      "name": "Aktiviteter",
+      "amount": 0
+    }
+  ]
+}

@@ -16,6 +16,7 @@
       --sales: light-dark(#f28b66, #d97858);
       --event: light-dark(#789775, #91ad8d);
       --meeting: light-dark(#77a6c9, #82aac7);
+      --sponsor: light-dark(#4f91a8, #73aec2);
       --disco: light-dark(#b66aa6, #cf86bd);
       --important: light-dark(#d45757, #e47777);
       --travel: light-dark(#d8892f, #efb35f);
@@ -47,6 +48,16 @@
     h1 { margin: 0 0 6px; font-size: clamp(28px, 4vw, 40px); font-weight: 650; letter-spacing: -.03em; }
     header p { margin: 0; color: var(--muted); }
     .badge { padding: 9px 16px; border-radius: 999px; background: light-dark(#f7bd5b, #7d5a35); white-space: nowrap; transform: rotate(2deg); }
+    .fundraising { padding: 28px 38px 30px; border-bottom: 1px solid var(--grid); }
+    .fundraising-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 16px; }
+    .fundraising h2 { margin: 0 0 4px; font-size: 22px; font-weight: 650; letter-spacing: -.02em; }
+    .fundraising p { margin: 0; color: var(--muted); font: 400 14px/1.4 system-ui, sans-serif; }
+    .fundraising-total { color: var(--ink); font-size: 18px; font-weight: 650; white-space: nowrap; }
+    .fundraising-meter { display: flex; height: 28px; overflow: hidden; border-radius: 999px; background: var(--grid); box-shadow: inset 0 1px 2px rgb(86 61 47 / 12%); }
+    .fundraising-segment { height: 100%; min-width: 0; transition: width .35s ease; }
+    .fundraising-legend { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 14px; color: var(--muted); font: 400 13px/1.4 system-ui, sans-serif; }
+    .fundraising-key { display: inline-flex; align-items: center; gap: 7px; }
+    .fundraising-key::before { content: ""; width: 10px; height: 10px; border-radius: 3px; background: var(--key-color); }
     .scroller { overflow-x: auto; }
     .gantt { min-width: 1200px; padding: 28px 38px 34px; }
     .months { display: grid; grid-template-columns: 30fr 31fr 30fr 31fr 31fr 28fr 31fr 30fr 31fr 30fr; border-bottom: 2px solid var(--grid); }
@@ -176,6 +187,8 @@
     @media (max-width: 650px) {
       main { margin: 0; border-radius: 0; }
       header { align-items: flex-start; flex-direction: column; padding: 24px; }
+      .fundraising { padding-inline: 24px; }
+      .fundraising-head { align-items: flex-start; flex-direction: column; gap: 8px; }
       .gantt { padding-inline: 24px; }
       .activity-table { padding-inline: 24px; }
     }
@@ -187,6 +200,14 @@
       <div><h1>Toleransprojektet 2026-2027 Årshjul</h1><p>Aktiviteter i projektet - klicka för detaljer</p></div>
       <div class="badge">14 saker på gång · sep-jun</div>
     </header>
+    <section class="fundraising" aria-labelledby="fundraising-title">
+      <div class="fundraising-head">
+        <div><h2 id="fundraising-title">Insamling till resan</h2><p id="fundraising-status">Läser insamlingsdata…</p></div>
+        <div class="fundraising-total" id="fundraising-total">0 kr av 0 kr</div>
+      </div>
+      <div class="fundraising-meter" id="fundraising-meter" role="progressbar" aria-label="Insamlat mot mål" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0"></div>
+      <div class="fundraising-legend" id="fundraising-legend"></div>
+    </section>
     <div class="scroller" aria-label="Gantt-schema">
       <section class="gantt">
         <div class="months" aria-hidden="true">
@@ -266,6 +287,55 @@
       </div>
     </section>
     <script>
+      const money = new Intl.NumberFormat("sv-SE", { style: "currency", currency: "SEK", maximumFractionDigits: 0 });
+      const revenueColors = {
+        "Försäljning": "var(--sales)",
+        "Disco": "var(--disco)",
+        "Sponsring": "var(--sponsor)",
+        "Anmälningsavgifter": "var(--important)",
+        "Aktiviteter": "var(--event)"
+      };
+
+      fetch("./fundraising.json", { cache: "no-store" })
+        .then(response => {
+          if (!response.ok) throw new Error("Insamlingsdata saknas");
+          return response.json();
+        })
+        .then(data => {
+          const goal = Number(data.goal);
+          const categories = data.categories.map(item => ({ name: item.name, amount: Number(item.amount) }));
+          const total = categories.reduce((sum, item) => sum + item.amount, 0);
+          const scale = Math.max(goal, total, 1);
+          const meter = document.getElementById("fundraising-meter");
+          const legend = document.getElementById("fundraising-legend");
+
+          categories.forEach(item => {
+            const color = revenueColors[item.name] || "var(--muted)";
+            const segment = document.createElement("div");
+            segment.className = "fundraising-segment";
+            segment.style.width = `${item.amount / scale * 100}%`;
+            segment.style.background = color;
+            segment.setAttribute("aria-label", `${item.name}: ${money.format(item.amount)}`);
+            meter.append(segment);
+
+            const key = document.createElement("span");
+            key.className = "fundraising-key";
+            key.style.setProperty("--key-color", color);
+            key.textContent = `${item.name}: ${money.format(item.amount)}`;
+            legend.append(key);
+          });
+
+          document.getElementById("fundraising-total").textContent = `${money.format(total)} av ${money.format(goal)}`;
+          document.getElementById("fundraising-status").textContent = goal > 0
+            ? `${Math.round(total / goal * 100)} % av målet · ${money.format(Math.max(goal - total, 0))} kvar`
+            : "Ange insamlingsmålet i Excel-filen";
+          meter.setAttribute("aria-valuemax", String(Math.max(goal, 1)));
+          meter.setAttribute("aria-valuenow", String(Math.min(total, Math.max(goal, 1))));
+        })
+        .catch(() => {
+          document.getElementById("fundraising-status").textContent = "Insamlingsdata kunde inte läsas";
+        });
+
       const tasks = [...document.querySelectorAll(".task")];
       const closeTask = task => {
         task.classList.remove("is-open");
