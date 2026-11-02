@@ -3,11 +3,11 @@
   "categories": [
     {
       "name": "Försäljning",
-      "amount": 47000
+      "amount": 0
     },
     {
       "name": "Disco",
-      "amount": 40000
+      "amount": 0
     },
     {
       "name": "Sponsring",
@@ -15,11 +15,11 @@
     },
     {
       "name": "Anmälningsavgifter",
-      "amount": 45000
+      "amount": 0
     },
     {
       "name": "Aktiviteter",
-      "amount": 46000
+      "amount": 0
     }
   ]
 }
